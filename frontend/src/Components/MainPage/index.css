@@ -1,0 +1,440 @@
+/* ==========================================================================
+   1. APP STYLING FRAMEWORK & CSS VARIABLES
+   ========================================================================== */
+:root {
+  --bg-main: #090d16;
+  --bg-surface: #131c2e;
+  --bg-surface-hover: #1b273f;
+  --border-color: rgba(255, 255, 255, 0.06);
+  --border-glow: rgba(56, 189, 248, 0.15);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --accent-primary: #38bdf8;
+  --accent-primary-glow: rgba(56, 189, 248, 0.3);
+  --accent-interactive: #2563eb;
+  --accent-interactive-hover: #1d4ed8;
+  --accent-danger: #f43f5e;
+  --accent-danger-hover: #e11d48;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Base structural layout parent resets */
+#root,
+.app-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+.main-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Immersive background blurring layer while target modal window handles choice */
+.blur-background {
+  filter: blur(12px) brightness(0.6);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR
+   ========================================================================== */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 6%;
+  background-color: rgba(19, 28, 46, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #ffffff 40%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo span {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 1px;
+}
+
+.btn-logout {
+  background: rgba(244, 63, 94, 0.1);
+  color: #fda4af;
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  padding: 0.55rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-logout:hover {
+  background-color: var(--accent-danger);
+  border-color: var(--accent-danger);
+  color: var(--text-primary);
+  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   3. HERO DISPLAY & LIVE QUOTE CAROUSEL
+   ========================================================================== */
+.hero-section {
+  width: 100%;
+  text-align: center;
+  padding: 6.5rem 6% 5.5rem 6%;
+  background:
+    radial-gradient(
+      circle at 50% -20%,
+      rgba(37, 99, 235, 0.18) 0%,
+      transparent 50%
+    ),
+    radial-gradient(circle at 50% 100%, rgba(9, 13, 22, 1) 0%, transparent 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.carousel-container {
+  min-height: 40px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote-text {
+  font-style: italic;
+  color: var(--accent-primary);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background: rgba(56, 189, 248, 0.06);
+  padding: 0.5rem 1.5rem;
+  border-radius: 100px;
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  display: inline-block;
+  animation: fadeInQuote 0.5s ease-out;
+}
+
+@keyframes fadeInQuote {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  margin: 0.5rem 0 1.2rem 0;
+  font-weight: 850;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  max-width: 620px;
+  margin: 0 auto 2.5rem auto;
+  line-height: 1.6;
+}
+
+.take-quiz-btn {
+  background: linear-gradient(
+    135deg,
+    var(--accent-interactive) 0%,
+    #3b82f6 100%
+  );
+  color: var(--text-primary);
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 650;
+  padding: 0.9rem 2.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.take-quiz-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  box-shadow: 0 6px 24px rgba(37, 99, 235, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   4. SELECTION POPUP WINDOW MODAL
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(5, 8, 15, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background-color: var(--bg-surface);
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  max-width: 480px;
+  width: 90%;
+  animation: modalScaleUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalScaleUp {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-content h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.modal-content p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 2.2rem;
+}
+
+.exam-options {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.exam-card-btn {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  padding: 1.8rem 1rem;
+  border-radius: 14px;
+  width: 150px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exam-card-btn:hover {
+  border-color: var(--accent-primary);
+  background-color: rgba(56, 189, 248, 0.04);
+  box-shadow: 0 0 20px var(--border-glow);
+  transform: translateY(-4px);
+}
+
+.exam-icon {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  transition: transform 0.25s ease;
+}
+
+.exam-card-btn:hover .exam-icon {
+  transform: scale(1.12);
+}
+
+.exam-card-btn span {
+  font-weight: 750;
+  font-size: 1.15rem;
+  letter-spacing: 0.03em;
+}
+
+/* ==========================================================================
+   5. CURATED LEARNING RESOURCES
+   ========================================================================== */
+.resources-section {
+  width: 100%;
+  padding: 5.5rem 6%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-header h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.6rem 0;
+}
+
+.section-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.resource-card {
+  background-color: var(--bg-surface);
+  padding: 2.2rem 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.resource-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  background-color: var(--bg-surface-hover);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+  transform: translateY(-4px);
+}
+
+.resource-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.6rem 0;
+  letter-spacing: -0.01em;
+}
+
+.resource-card p {
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  margin: 0 0 1.8rem 0;
+  min-height: 46px; /* Keeps buttons cleanly aligned across differing text lengths */
+}
+
+.view-btn {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--accent-primary);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.92rem;
+  width: 100%; /* Spans full card row width for crisp button targeting layout */
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.resource-card:hover .view-btn {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: var(--bg-main);
+  font-weight: 700;
+  box-shadow: 0 4px 12px var(--accent-primary-glow);
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 4.5rem 6% 4rem 6%;
+  }
+
+  .hero-section h1 {
+    font-size: 2.6rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .modal-content {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .exam-options {
+    gap: 1rem;
+  }
+
+  .exam-card-btn {
+    width: 130px;
+    padding: 1.4rem 0.8rem;
+  }
+}
